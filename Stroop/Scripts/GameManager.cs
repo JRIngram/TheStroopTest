@@ -1,87 +1,117 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public class GameManager : VBoxContainer
 {
     [Signal]
+    public delegate void ColorChosen(String buttonColor);
+
+    [Signal]
+    public delegate void ScoreUpdated(int score);
+
+    [Signal]
+    public delegate void StartTimerUpdated(int timeBeforeStart);
+
+    [Signal]
+    public delegate void TimeRemainingUpdated(int timeRemaining);
+
+    [Signal]
+    public delegate void StartGame();
+
+    [Signal]
+    public delegate void GameOver();
+
+    [Signal]
     public delegate void QuitToMainMenu();
-    private Color _CurrentColor;
-    private Label _wordLabel;
+
     private int _score;
-    private Dictionary<String, Color> Colors;
+    
+    [Export]
+    private int _secondsRemaining;
 
-    private Label scoreLabel;
 
-    // Called when the node enters the scene tree for the first time.
+    private Timer _timeRemaining;
+
+    private Timer _startTimer;
+
+    private int _timeBeforeStart;
+
+    private bool _gameStarted;
+
     public override void _Ready()
     {
-        Colors = new Dictionary<string, Color>();
-        Color red = new Color(.722f, .116f, .116f);
-        Color blue = new Color(.212f, .212f, .833f);
-        Color yellow = new Color(.884f, .884f, .27f);
-        Colors.Add("red", red);
-        Colors.Add("blue", blue);
-        Colors.Add("yellow", yellow);
+        CenterContainer word = GetNode<CenterContainer>("WordContainer");
+        word.Connect("ColorValidationComplete", this, nameof(_OnColorValidationComplete));
 
-        _wordLabel = GetNode<Label>("WordContainer/Word");
-        chooseCurrentWord();
-        scoreLabel = GetNode<Label>("Labels/Score");
-        _score = 0;
-        scoreLabel.Text = "Score: " + _score;
+        //Connect Color and Quit Buttons
+        VBoxContainer gameButtons = GetNode<VBoxContainer>("GameButtons");
+        gameButtons.Connect("ColorButtonPressed", this, nameof(CheckCorrectButtonPressed));
+        gameButtons.Connect("QuitButtonPressed", this, nameof(OnQuitToMainMenuPressed));
+
+        _startTimer = GetNode<Timer>("StartTimer");
+        _startTimer.Connect("timeout", this, nameof(OnStartTimerTimeout));
+        _timeBeforeStart = 3;
+        _gameStarted = false;
+
+        _timeRemaining = GetNode<Timer>("TimeRemaining");
+        _timeRemaining.Connect("timeout", this, nameof(OnTimeRemainingTimeout));
     }
 
-    public void chooseCurrentWord()
+    private void OnStartTimerTimeout()
     {
-        String word = selectWord();
-        _CurrentColor = selectColor();
-        _wordLabel.Text = word;
-        _wordLabel.Set("custom_colors/font_color", _CurrentColor);
+        if(_gameStarted == false)
+        {
+            _timeBeforeStart--;
+            if(_timeBeforeStart == 0)
+            {
+                _gameStarted = true;
+                EmitSignal(nameof(StartGame));
+                _startTimer.Stop();
+                _timeRemaining.Start(1);
+                _startTimer.QueueFree();
+            }
+            EmitSignal(nameof(StartTimerUpdated), _timeBeforeStart);
+        }
     }
 
-    private String selectWord()
+    private void OnTimeRemainingTimeout()
     {
-        String[] availableWords = {"red", "blue", "yellow"};
-        Random random = new Random();
-        String selectedWord = availableWords[random.Next(0,3)];
-        return selectedWord;
+        if(_gameStarted)
+        {
+            if(_secondsRemaining > 0){
+                _secondsRemaining--;
+                EmitSignal(nameof(TimeRemainingUpdated), _secondsRemaining);
+            }
+            if(_secondsRemaining == 0){
+                EmitSignal(nameof(GameOver));
+                _timeRemaining.Stop();
+                _timeRemaining.QueueFree();
+            }
+        }
     }
 
-    private Color selectColor()
+    private void CheckCorrectButtonPressed(String buttonColor)
     {
-        Color[] availableColors = {Colors["red"], Colors["blue"], Colors["yellow"]};
-        Random random = new Random();
-        Color selectedColor = availableColors[random.Next(0,3)];
-        return selectedColor;
+        EmitSignal(nameof(ColorChosen), buttonColor);
     }
 
-    private void checkCorrectButtonPressed(Color buttonColor){
-        if(buttonColor == _CurrentColor){
+    private void _OnColorValidationComplete(bool correct)
+    {
+        if(correct){
             _score++;
-            scoreLabel.Text = "Score: " + _score;
+            EmitSignal(nameof(ScoreUpdated), _score);
             AudioStreamPlayer correctAnswer = GetNode<AudioStreamPlayer>("CorrectAnswer");
             correctAnswer.Play();
         }
         else{
-            AudioStreamPlayer WrongAnswer = GetNode<AudioStreamPlayer>("WrongAnswer");
-            WrongAnswer.Play();
+            AudioStreamPlayer wrongAnswer = GetNode<AudioStreamPlayer>("WrongAnswer");
+            wrongAnswer.Play();
         }
-        chooseCurrentWord();
+        System.Diagnostics.Debug.WriteLine("Score: " + _score);
     }
 
-    private void _OnRedButtonButtonDown(){
-        checkCorrectButtonPressed(Colors["red"]);
-    }
-
-    private void _OnBlueButtonButtonDown(){
-        checkCorrectButtonPressed(Colors["blue"]);
-    }
-
-    private void _OnYellowButtonButtonDown(){
-        checkCorrectButtonPressed(Colors["yellow"]);
-    }
-
-    private void _OnQuitToMainMenuPressed(){
+    private void OnQuitToMainMenuPressed()
+    {
         EmitSignal(nameof(QuitToMainMenu));
     }
 }

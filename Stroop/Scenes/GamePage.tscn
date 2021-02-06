@@ -1,108 +1,36 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/WordContainer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Fonts/HAMBH___.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/GameLabels.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Sounds/Correct.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Sounds/Incorrect.wav" type="AudioStream" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
-font_data = ExtResource( 3 )
+[ext_resource path="res://Scenes/GameButtons.tscn" type="PackedScene" id=6]
 
 [node name="GamePage" type="VBoxContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -316.5
-margin_right = 512.0
-margin_bottom = 316.5
+margin_left = -521.524
+margin_top = -335.549
+margin_right = 502.476
+margin_bottom = 297.451
 custom_constants/separation = 150
 alignment = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+_secondsRemaining = 10
 
-[node name="Labels" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-
-[node name="Score" type="Label" parent="Labels"]
-margin_right = 890.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 1 )
-text = "Score:"
-
-[node name="Timer" type="Label" parent="Labels"]
-margin_left = 894.0
-margin_right = 1024.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 1 )
-text = "60 seconds!"
-align = 2
+[node name="GameLabels" parent="." instance=ExtResource( 3 )]
 
 [node name="WordContainer" parent="." instance=ExtResource( 2 )]
+margin_top = 237.0
+margin_bottom = 293.0
 
-[node name="GameButtons" type="VBoxContainer" parent="."]
-margin_top = 396.0
-margin_right = 1024.0
-margin_bottom = 442.0
-
-[node name="ColorButtons" type="HBoxContainer" parent="GameButtons"]
-margin_right = 1024.0
-margin_bottom = 46.0
-size_flags_horizontal = 3
-custom_constants/separation = 325
-alignment = 1
-
-[node name="RedButton" type="Button" parent="GameButtons/ColorButtons"]
-margin_left = 83.0
-margin_right = 138.0
-margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
-text = "Red"
-
-[node name="BlueButton" type="Button" parent="GameButtons/ColorButtons"]
-margin_left = 463.0
-margin_right = 524.0
-margin_bottom = 46.0
-custom_fonts/font = SubResource( 4 )
-text = "Blue"
-
-[node name="YellowButton" type="Button" parent="GameButtons/ColorButtons"]
-margin_left = 849.0
-margin_right = 941.0
-margin_bottom = 46.0
-custom_fonts/font = SubResource( 5 )
-text = "Yellow"
-
-[node name="QuitToMainMenu" type="Button" parent="."]
-margin_top = 592.0
-margin_right = 1024.0
-margin_bottom = 638.0
-custom_fonts/font = SubResource( 6 )
-text = "Quit To Main Menu"
+[node name="GameButtons" parent="." instance=ExtResource( 6 )]
 
 [node name="CorrectAnswer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -111,10 +39,8 @@ stream = ExtResource( 4 )
 stream = ExtResource( 5 )
 volume_db = -5.778
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.001
+[node name="TimeRemaining" type="Timer" parent="."]
 autostart = true
-[connection signal="button_down" from="GameButtons/ColorButtons/RedButton" to="." method="_OnRedButtonButtonDown"]
-[connection signal="button_down" from="GameButtons/ColorButtons/BlueButton" to="." method="_OnBlueButtonButtonDown"]
-[connection signal="button_down" from="GameButtons/ColorButtons/YellowButton" to="." method="_OnYellowButtonButtonDown"]
-[connection signal="pressed" from="QuitToMainMenu" to="." method="_OnQuitToMainMenuPressed"]
+
+[node name="StartTimer" type="Timer" parent="."]
+autostart = true
