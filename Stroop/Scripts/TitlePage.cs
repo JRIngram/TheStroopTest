@@ -9,7 +9,7 @@ public class TitlePage : VBoxContainer
 
     public override void _Ready()
     {
-        //GetNode<AudioStreamPlayer>("Theme").Play();
+        GetNode<AudioStreamPlayer>("Theme").Play();
     }
 
     private void OnPlayPressed()
