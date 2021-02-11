@@ -62,9 +62,7 @@ public class WordManager : CenterContainer
 
     private void OnColorChosen(String buttonColor)
     {
-        System.Diagnostics.Debug.WriteLine("Checking Color chosen is correct...");
         bool correctColorChosen = Colors[buttonColor] == _currentColor;
-        System.Diagnostics.Debug.WriteLine(buttonColor + " is " + correctColorChosen);
         chooseCurrentWordAndColor();
         EmitSignal(nameof(ColorValidationComplete), correctColorChosen);
     }
@@ -75,7 +73,6 @@ public class WordManager : CenterContainer
 
     public void chooseCurrentWordAndColor()
     {
-        System.Diagnostics.Debug.WriteLine("choosing a word and colour!");
         String word = selectWord();
         _currentColor = selectColor();
         _wordLabel.Text = word;
@@ -84,7 +81,6 @@ public class WordManager : CenterContainer
 
     private String selectWord()
     {
-        System.Diagnostics.Debug.WriteLine("select a bloody word!");
         String[] availableWords = {"red", "blue", "yellow"};
         Random random = new Random();
         String selectedWord = availableWords[random.Next(0,3)];

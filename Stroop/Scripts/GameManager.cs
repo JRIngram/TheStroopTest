@@ -107,7 +107,6 @@ public class GameManager : VBoxContainer
             AudioStreamPlayer wrongAnswer = GetNode<AudioStreamPlayer>("WrongAnswer");
             wrongAnswer.Play();
         }
-        System.Diagnostics.Debug.WriteLine("Score: " + _score);
     }
 
     private void OnQuitToMainMenuPressed()

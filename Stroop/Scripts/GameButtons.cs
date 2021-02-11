@@ -43,17 +43,14 @@ public class GameButtons : VBoxContainer
     }
 
     private void OnRedButtonPressed(){
-        System.Diagnostics.Debug.WriteLine("Pressed");
         EmitSignal(nameof(ColorButtonPressed), "red");
     }
 
     private void OnBlueButtonPressed(){
-        System.Diagnostics.Debug.WriteLine("Pressed");
         EmitSignal(nameof(ColorButtonPressed), "blue");
     }
 
     private void OnYellowButtonPressed(){
-        System.Diagnostics.Debug.WriteLine("Pressed");
         EmitSignal(nameof(ColorButtonPressed), "yellow");
     }
 

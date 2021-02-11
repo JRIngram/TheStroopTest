@@ -5,10 +5,10 @@
 [ext_resource path="res://Scripts/TitlePage.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/Title.tscn" type="PackedScene" id=4]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 50
 font_data = ExtResource( 1 )
 
@@ -37,45 +37,43 @@ alignment = 1
 margin_top = 140.0
 margin_right = 1010.0
 margin_bottom = 201.0
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Play"
 
-[node name="HowTo" type="Button" parent="Buttons"]
+[node name="Instructions" type="Button" parent="Buttons"]
 margin_top = 251.0
 margin_right = 1010.0
 margin_bottom = 312.0
 grow_vertical = 2
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
-text = "How To Play"
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Instructions"
 
 [node name="Credits" type="Button" parent="Buttons"]
 margin_top = 362.0
 margin_right = 1010.0
 margin_bottom = 423.0
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Credits"
 
 [node name="Quit" type="Button" parent="Buttons"]
 margin_top = 473.0
 margin_right = 1010.0
 margin_bottom = 534.0
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Quit"
 
 [node name="Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -10.0
-[connection signal="pressed" from="Buttons/Play" to="." method="OnPlayPressed"]
-[connection signal="pressed" from="Buttons/Quit" to="." method="OnQuitPressed"]
