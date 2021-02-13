@@ -11,6 +11,9 @@ public class HUDController : Panel
     [Export]
     public PackedScene InstructionsPage;
 
+    [Export]
+    public PackedScene CreditsPage;
+
     enum Screens{
         Title,
         Game,
@@ -27,8 +30,9 @@ public class HUDController : Panel
     {
         _margin = GetNode<MarginContainer>("MarginContainer");
         TitlePage = GD.Load<PackedScene>("res://Scenes/TitlePage.tscn");
-        InstructionsPage = GD.Load<PackedScene>("res://Scenes/InstructionsPage.tscn");
         GamePage = GD.Load<PackedScene>("res://Scenes/GamePage.tscn");
+        InstructionsPage = GD.Load<PackedScene>("res://Scenes/InstructionsPage.tscn");
+        CreditsPage = GD.Load<PackedScene>("res://Scenes/CreditsPage.tscn");
         _ActiveScreen = Screens.Title;
         DisplayScreen();
     }
@@ -60,6 +64,7 @@ public class HUDController : Panel
                 _margin.RemoveChild(GetNode("MarginContainer/InstructionsPage"));
                 break;
             case Screens.Credits:
+                _margin.RemoveChild(GetNode("MarginContainer/CreditsPage"));
                 break;
 
         }
@@ -74,6 +79,7 @@ public class HUDController : Panel
                 _margin.AddChild(TitlePage.Instance());
                 GetNode("MarginContainer/TitlePage").Connect("PlayPressed", this, nameof(OnPlayPressed));
                 GetNode("MarginContainer/TitlePage").Connect("InstructionsPressed", this, nameof(OnInstructionsPressed));
+                GetNode("MarginContainer/TitlePage").Connect("CreditsPressed", this, nameof(OnCreditsPressed));
                 break;
             case Screens.Game:
                 _margin.AddChild(GamePage.Instance());
@@ -85,6 +91,8 @@ public class HUDController : Panel
                 GetNode("MarginContainer/InstructionsPage").Connect("QuitToMainMenuPressed", this, nameof(OnQuitToMainMenu));
                 break;
             case Screens.Credits:
+                _margin.AddChild(CreditsPage.Instance());
+                GetNode("MarginContainer/CreditsPage").Connect("QuitToMainMenuPressed", this, nameof(OnQuitToMainMenu));
                 break;
         }
     }
@@ -96,6 +104,11 @@ public class HUDController : Panel
     private void OnInstructionsPressed()
     {
         ChangeScreen(Screens.Instructions);
+    }
+
+    private void OnCreditsPressed()
+    {
+        ChangeScreen(Screens.Credits);
     }
 
     private void OnQuitToMainMenu()

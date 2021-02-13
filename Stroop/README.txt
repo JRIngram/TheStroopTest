@@ -2,5 +2,5 @@ Sounds:
 * Bertof https://freesound.org/people/Bertrof/
 * Mrthenoronha https://freesound.org/people/Mrthenoronha/
 Fonts: 
-* Hamburger Heaven http://www.nicksfonts.com/
-* Aerovias Brasil NF
+* Hamburger Heaven:  http://www.nicksfonts.com/
+* Aerovias Brasil NF: www.1001fonts.com
