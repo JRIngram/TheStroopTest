@@ -15,7 +15,7 @@ public class TitlePage : VBoxContainer
 
     public override void _Ready()
     {
-        //GetNode<AudioStreamPlayer>("Theme").Play();
+        GetNode<AudioStreamPlayer>("Theme").Play();
         GetNode<Button>("Buttons/Play").Connect("pressed", this, nameof(OnPlayPressed));
         GetNode<Button>("Buttons/Instructions").Connect("pressed", this, nameof(OnInstructionsPressed));
         GetNode<Button>("Buttons/Credits").Connect("pressed", this, nameof(OnCreditsPressed));

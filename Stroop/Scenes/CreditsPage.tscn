@@ -8,19 +8,19 @@
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -49,14 +49,14 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="DesignAnd Programming2" type="VBoxContainer" parent="Credits"]
-margin_top = 97.0
+margin_top = 53.0
 margin_right = 1024.0
-margin_bottom = 184.0
+margin_bottom = 140.0
 
 [node name="SoundsTitle" type="Label" parent="Credits/DesignAnd Programming2"]
 margin_right = 1024.0
 margin_bottom = 43.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Programming and Design"
 align = 1
 
@@ -71,25 +71,25 @@ alignment = 1
 margin_left = 275.0
 margin_right = 434.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Jamie Ingram:"
 
 [node name="Website" type="Label" parent="Credits/DesignAnd Programming2/DesignAnd Programming"]
 margin_left = 454.0
 margin_right = 748.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "www.ingram.technology"
 
 [node name="Sounds" type="VBoxContainer" parent="Credits"]
-margin_top = 234.0
+margin_top = 190.0
 margin_right = 1024.0
-margin_bottom = 365.0
+margin_bottom = 409.0
 
 [node name="SoundsTitle" type="Label" parent="Credits/Sounds"]
 margin_right = 1024.0
 margin_bottom = 43.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Sounds"
 align = 1
 
@@ -104,14 +104,14 @@ alignment = 1
 margin_left = 246.0
 margin_right = 323.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Bertof "
 
 [node name="Website" type="Label" parent="Credits/Sounds/SoundsCredit"]
 margin_left = 343.0
 margin_right = 777.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "www.freesound.org/people/Bertrof/"
 
 [node name="SoundsCredit2" type="HBoxContainer" parent="Credits/Sounds"]
@@ -125,25 +125,67 @@ alignment = 1
 margin_left = 156.0
 margin_right = 326.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Mrthenoronha"
 
 [node name="Website" type="Label" parent="Credits/Sounds/SoundsCredit2"]
 margin_left = 346.0
 margin_right = 867.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "www.freesound.org/people/Mrthenoronha/"
 
-[node name="Fonts" type="VBoxContainer" parent="Credits"]
-margin_top = 415.0
+[node name="SoundsCredit3" type="HBoxContainer" parent="Credits/Sounds"]
+margin_top = 135.0
 margin_right = 1024.0
-margin_bottom = 546.0
+margin_bottom = 175.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Name" type="Label" parent="Credits/Sounds/SoundsCredit3"]
+margin_left = 174.0
+margin_right = 326.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "cabled_mess"
+
+[node name="Website" type="Label" parent="Credits/Sounds/SoundsCredit3"]
+margin_left = 346.0
+margin_right = 849.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "www.freesound.org/people/cabled_mess/"
+
+[node name="SoundsCredit4" type="HBoxContainer" parent="Credits/Sounds"]
+margin_top = 179.0
+margin_right = 1024.0
+margin_bottom = 219.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Name" type="Label" parent="Credits/Sounds/SoundsCredit4"]
+margin_left = 157.0
+margin_right = 320.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "kwahmah_02"
+
+[node name="Website" type="Label" parent="Credits/Sounds/SoundsCredit4"]
+margin_left = 340.0
+margin_right = 867.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "https://freesound.org/people/kwahmah_02/"
+
+[node name="Fonts" type="VBoxContainer" parent="Credits"]
+margin_top = 459.0
+margin_right = 1024.0
+margin_bottom = 590.0
 
 [node name="FontsTitle" type="Label" parent="Credits/Fonts"]
 margin_right = 1024.0
 margin_bottom = 43.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Fonts"
 align = 1
 
@@ -158,14 +200,14 @@ alignment = 1
 margin_left = 258.0
 margin_right = 481.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Hamburger Heaven"
 
 [node name="Website" type="Label" parent="Credits/Fonts/FontsCredit"]
 margin_left = 511.0
 margin_right = 765.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "www.nicksfonts.com"
 
 [node name="FontsCredit2" type="HBoxContainer" parent="Credits/Fonts"]
@@ -179,19 +221,19 @@ alignment = 1
 margin_left = 274.0
 margin_right = 483.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Aerovias Brasil NF"
 
 [node name="Website" type="Label" parent="Credits/Fonts/FontsCredit2"]
 margin_left = 513.0
 margin_right = 749.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "www.1001fonts.com"
 
 [node name="QuitToMainMenu" type="Button" parent="."]
 margin_top = 727.0
 margin_right = 1024.0
 margin_bottom = 768.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "Back to Main Menu"

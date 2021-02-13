@@ -22,7 +22,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_secondsRemaining = 10
+_secondsRemaining = 60
 
 [node name="GameLabels" parent="." instance=ExtResource( 3 )]
 

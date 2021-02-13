@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Fonts/HAMBH___.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/GameLabels.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/Clock.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/Buzzer.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -31,3 +33,9 @@ margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
 text = "60 seconds remain!!"
 align = 2
+
+[node name="Clock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Buzzer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

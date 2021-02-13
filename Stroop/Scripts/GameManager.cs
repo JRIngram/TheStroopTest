@@ -26,7 +26,6 @@ public class GameManager : VBoxContainer
 
     private int _score;
     
-    [Export]
     private int _secondsRemaining;
 
 
@@ -55,6 +54,8 @@ public class GameManager : VBoxContainer
 
         _timeRemaining = GetNode<Timer>("TimeRemaining");
         _timeRemaining.Connect("timeout", this, nameof(OnTimeRemainingTimeout));
+
+        _secondsRemaining = 60;
     }
 
     private void OnStartTimerTimeout()

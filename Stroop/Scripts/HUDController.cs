@@ -76,19 +76,21 @@ public class HUDController : Panel
         switch (_ActiveScreen)
         {
             case Screens.Title:
+                string titlePagePath = "MarginContainer/TitlePage";
                 _margin.AddChild(TitlePage.Instance());
-                GetNode("MarginContainer/TitlePage").Connect("PlayPressed", this, nameof(OnPlayPressed));
-                GetNode("MarginContainer/TitlePage").Connect("InstructionsPressed", this, nameof(OnInstructionsPressed));
-                GetNode("MarginContainer/TitlePage").Connect("CreditsPressed", this, nameof(OnCreditsPressed));
+                GetNode(titlePagePath).Connect("PlayPressed", this, nameof(OnPlayPressed));
+                GetNode(titlePagePath).Connect("InstructionsPressed", this, nameof(OnInstructionsPressed));
+                GetNode(titlePagePath).Connect("CreditsPressed", this, nameof(OnCreditsPressed));
                 break;
             case Screens.Game:
                 _margin.AddChild(GamePage.Instance());
                 GetNode("MarginContainer/GamePage").Connect("QuitToMainMenu", this, nameof(OnQuitToMainMenu));
                 break;
             case Screens.Instructions:
+                string instructionsPagePath = "MarginContainer/InstructionsPage";
                 _margin.AddChild(InstructionsPage.Instance());
-                GetNode("MarginContainer/InstructionsPage").Connect("PlayPressed", this, nameof(OnPlayPressed));
-                GetNode("MarginContainer/InstructionsPage").Connect("QuitToMainMenuPressed", this, nameof(OnQuitToMainMenu));
+                GetNode(instructionsPagePath).Connect("PlayPressed", this, nameof(OnPlayPressed));
+                GetNode(instructionsPagePath).Connect("QuitToMainMenuPressed", this, nameof(OnQuitToMainMenu));
                 break;
             case Screens.Credits:
                 _margin.AddChild(CreditsPage.Instance());
